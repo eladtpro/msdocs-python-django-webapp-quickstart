@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+
+some_data_to_dump = {
+'some_var_1': 'foo',
+'some_var_2': 'bar',
+}
 
 def index(request):
     print('Request for index page received')
@@ -20,3 +25,6 @@ def hello(request):
             return render(request, 'hello_azure/hello.html', context)
     else:
         return redirect('index')
+    
+def api(request):
+    return JsonResponse(some_data_to_dump)
